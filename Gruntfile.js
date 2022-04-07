@@ -4,14 +4,46 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
-    sass: {
-      options: {
-        implementation: sass,
-        sourceMap: true
+    config: {
+      srcFolder: 'src',
+      distFolder: 'dist'
+    },
+
+    browserSync: {
+      bsFiles: {
+        src : [
+          '<%= config.distFolder %>'
+        ],
       },
-      dist: {
-        files: {
-          'simple-grid.css': 'simple-grid.scss'
+      options: {
+        server: {
+          baseDir: '<%= config.distFolder %>'
+        }
+      }
+    },
+
+    watch: {
+      scss: {
+        expand: true,
+        files: ['<%= config.srcFolder %>*.scss'],
+        tasks: ['sass', 'cssmin'],
+        options: {
+          spawn: false
+        }
+      },
+    },
+
+    sass: {
+      app: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.srcFolder %>',
+          src: ['**/*.scss'],
+          dest: '<%= config.distFolder %>',
+          ext: '.css'
+        }],
+        options: {
+          implementation: sass,
         }
       }
     },
@@ -20,12 +52,15 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
+          cwd: '<%= config.distFolder %>',
           src: ['*.css', '!*.min.css'],
+          dest: '<%= config.distFolder %>',
           ext: '.min.css'
         }]
       }
     }
   });
 
+  grunt.registerTask('default', ['watch', 'browserSync']);
   grunt.registerTask('build', ['sass', 'cssmin']);
 };
