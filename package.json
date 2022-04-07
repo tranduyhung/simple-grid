@@ -1,0 +1,15 @@
+{
+  "name": "simple-grid",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-cssmin": "^4.0.0",
+    "grunt-sass": "^3.1.0",
+    "load-grunt-tasks": "^5.1.0",
+    "node-sass": "^7.0.1"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "grunt build"
+  }
+}
