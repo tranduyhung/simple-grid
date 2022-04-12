@@ -39,6 +39,7 @@ module.exports = function(grunt) {
         }],
         options: {
           implementation: sass,
+          sourceMap: true,
         }
       }
     },
