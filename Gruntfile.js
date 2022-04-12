@@ -12,25 +12,20 @@ module.exports = function(grunt) {
     browserSync: {
       bsFiles: {
         src : [
-          '<%= config.distFolder %>'
+          '<%= config.distFolder %>/'
         ],
       },
       options: {
-        server: {
-          baseDir: '<%= config.distFolder %>'
-        }
+        server: '<%= config.distFolder %>/'
       }
     },
 
     watch: {
       scss: {
         expand: true,
-        files: ['<%= config.srcFolder %>*.scss'],
-        tasks: ['sass', 'cssmin'],
-        options: {
-          spawn: false
-        }
-      },
+        files: ['<%= config.srcFolder %>/*.scss'],
+        tasks: ['sass', 'cssmin']
+      }
     },
 
     sass: {
