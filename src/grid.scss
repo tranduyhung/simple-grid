@@ -78,3 +78,7 @@ $breakpoint-large: 60em; // 960px
   .col-11 { width: ($width / (12 / 11)) - ($gutter * 1 / 12); }
   .col-12 { width: $width; }
 }
+
+.col-1 {
+  background-color: red
+}
